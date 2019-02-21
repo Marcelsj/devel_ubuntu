@@ -14,11 +14,21 @@ RUN apt-get install nano \
     && apt-get -y install php-mbstring \
     && apt-get -y install zip \
     && curl -sS https://getcomposer.org/installer -o composer-setup.php \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && apt-get install php-xml -y \
+    && apt-get install php-curl -y \
+    && apt-get install php-zip -y
 
 COPY apache2.conf /etc/apache2/apache2.conf
 
 RUN service apache2 start
+RUN curl -sS https://get.symfony.com/cli/installer | bash \
+    && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+RUN   git config --global user.email "marcel.serra@gmail.com" \
+      && git config --global user.name "Marcelsj"
+
+
+WORKDIR /var/www/html
 
 EXPOSE 80
 

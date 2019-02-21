@@ -8,3 +8,5 @@ services:
     image: ubuntu_devel
     ports:
       - '80:80'
+    volumes: 
+      - ./code:/var/www/html
