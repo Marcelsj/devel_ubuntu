@@ -1,0 +1,10 @@
+version: "3.5"
+
+services:
+  ubuntu_devel:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    image: ubuntu_devel
+    ports:
+      - '80:80'
